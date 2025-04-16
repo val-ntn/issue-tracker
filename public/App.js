@@ -14,7 +14,7 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
 function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
 function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
 // App.jsx
-var issues = [{
+var initialIssues = [{
   id: 1,
   status: 'New',
   owner: 'Ravan',
@@ -31,27 +31,25 @@ var issues = [{
   due: new Date('2018-08-30'),
   title: 'Missing bottom border on panel'
 }];
-
-// IssueRow Component (Child Component for rendering individual issues)
-/* class IssueRow extends React.Component {
-  render() {
-    const style = this.props.rowStyle;  
-    return (
-      <tr>
-        <td style={style}>{this.props.issue_id}</td>
-        <td style={style}>{this.props.children}</td>
-      </tr>
-    );
+var IssueFilter = /*#__PURE__*/function (_React$Component) {
+  function IssueFilter() {
+    _classCallCheck(this, IssueFilter);
+    return _callSuper(this, IssueFilter, arguments);
   }
-} */
-
-// IssueRow Component
-var IssueRow = /*#__PURE__*/function (_React$Component) {
+  _inherits(IssueFilter, _React$Component);
+  return _createClass(IssueFilter, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("div", null, "This is a placeholder for the issue filter.");
+    }
+  }]);
+}(React.Component); // IssueRow Component
+var IssueRow = /*#__PURE__*/function (_React$Component2) {
   function IssueRow() {
     _classCallCheck(this, IssueRow);
     return _callSuper(this, IssueRow, arguments);
   }
-  _inherits(IssueRow, _React$Component);
+  _inherits(IssueRow, _React$Component2);
   return _createClass(IssueRow, [{
     key: "render",
     value: function render() {
@@ -59,41 +57,22 @@ var IssueRow = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, issue.id), /*#__PURE__*/React.createElement("td", null, issue.status), /*#__PURE__*/React.createElement("td", null, issue.owner), /*#__PURE__*/React.createElement("td", null, issue.created.toDateString()), /*#__PURE__*/React.createElement("td", null, issue.effort), /*#__PURE__*/React.createElement("td", null, issue.due ? issue.due.toDateString() : ''), /*#__PURE__*/React.createElement("td", null, issue.title));
     }
   }]);
-}(React.Component); // IssueTable Component (Parent Component that manages the list of issues)
-/* class IssueTable extends React.Component {
-  render() {
-    const rowStyle = { border: "1px solid silver", padding: 4 };  // Styling for rows
-    return (
-      <table style={{ borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th style={rowStyle}>ID</th>
-            <th style={rowStyle}>Title</th>
-          </tr>
-        </thead>
-        <tbody>
-           <IssueRow rowStyle={rowStyle} issue_id={1}>
-            Error in console when clicking Add
-          </IssueRow>
-          <IssueRow rowStyle={rowStyle} issue_id={2}>
-            <div>Missing <b>bottom</b> border on panel</div>
-          </IssueRow>
-        </tbody>
-      </table>
-    );
-  }
-} */
-// IssueTable Component
-var IssueTable = /*#__PURE__*/function (_React$Component2) {
+}(React.Component); // IssueTable Component
+var IssueTable = /*#__PURE__*/function (_React$Component3) {
   function IssueTable() {
+    var _this;
     _classCallCheck(this, IssueTable);
-    return _callSuper(this, IssueTable, arguments);
+    _this = _callSuper(this, IssueTable);
+    _this.state = {
+      issues: initialIssues
+    };
+    return _this;
   }
-  _inherits(IssueTable, _React$Component2);
+  _inherits(IssueTable, _React$Component3);
   return _createClass(IssueTable, [{
     key: "render",
     value: function render() {
-      var issueRows = issues.map(function (issue) {
+      var issueRows = this.state.issues.map(function (issue) {
         return /*#__PURE__*/React.createElement(IssueRow, {
           key: issue.id,
           issue: issue
@@ -102,19 +81,6 @@ var IssueTable = /*#__PURE__*/function (_React$Component2) {
       return /*#__PURE__*/React.createElement("table", {
         className: "bordered-table"
       }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "ID"), /*#__PURE__*/React.createElement("th", null, "Status"), /*#__PURE__*/React.createElement("th", null, "Owner"), /*#__PURE__*/React.createElement("th", null, "Created"), /*#__PURE__*/React.createElement("th", null, "Effort"), /*#__PURE__*/React.createElement("th", null, "Due Date"), /*#__PURE__*/React.createElement("th", null, "Title"))), /*#__PURE__*/React.createElement("tbody", null, issueRows));
-    }
-  }]);
-}(React.Component);
-var IssueFilter = /*#__PURE__*/function (_React$Component3) {
-  function IssueFilter() {
-    _classCallCheck(this, IssueFilter);
-    return _callSuper(this, IssueFilter, arguments);
-  }
-  _inherits(IssueFilter, _React$Component3);
-  return _createClass(IssueFilter, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, "This is a placeholder for the issue filter.");
     }
   }]);
 }(React.Component);
